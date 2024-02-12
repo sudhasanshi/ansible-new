@@ -9,7 +9,7 @@ pipeline {
         }
 		stage('deploy') {
             steps {
-                ansible-playbook '/etc/ansible/ansible-new/tomcat_download.yml'
+                ansible-playbook tomcat_download.yml
             }
         }
     }
