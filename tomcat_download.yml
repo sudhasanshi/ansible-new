@@ -1,0 +1,24 @@
+---
+- hosts: target
+  tasks:
+    - name: install_java
+      apt:
+        name: default-jdk
+        state: present
+    - name: download_tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.98/bin/apache-tomcat-8.5.98.tar.gz
+        dest: /opt
+    - name: extracting_tar_files
+      unarchive:
+        src: /opt/apache-tomcat-8.5.98.tar.gz
+        dest: /opt
+        remote_src: yes
+    - name: providing_execute_permissions
+      file:
+        path: /opt/apache-tomcat-8.5.98/bin/startup.sh
+        mode: 0777
+    - name: start_tomcat
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt/apache-tomcat-8.5.98/bin
