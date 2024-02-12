@@ -9,8 +9,8 @@ pipeline {
         }
 		stage('deploy') {
             steps {
-                ansible-playbook tomcat_download.yml }
+                ansible-playbook tomcat_download.yml
+            }
         }
     }
-}
 }
