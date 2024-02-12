@@ -14,12 +14,8 @@
         src: /opt/apache-tomcat-8.5.98.tar.gz
         dest: /opt
         remote_src: yes
-    - name: providing_execute_permissions
-      file:
-        path: /opt/apache-tomcat-8.5.98/bin/startup.sh
-        mode: 0777
     - name: changes_in_webapps
       shell: sed -i 's/8080/8082/g' /opt/apache-tomcat-8.5.98/conf/server.xml && sed -i  '21s/^/<!--/g' "/opt/apache-tomcat-8.5.98/webapps/host-manager/META-INF/context.xml" && sed -i  '22s/$/-->/g' "/opt/apache-tomcat-8.5.98/webapps/host-manager/META-INF/context.xml" && sed -i  '21s/^/<!--/g' "/opt/apache-tomcat-8.5.98/webapps/manager/META-INF/context.xml" && sed -i  '22s/$/-->/g' "/opt/apache-tomcat-8.5.98/webapps/manager/META-INF/context.xml" && sed -i -e '55 a\<role rolename="manager-gui" /> \n<user username="tarun" password="99490" roles="manager-gui" /> \n<!-- user admin can access manager and admin section both --> \n<role rolename="admin-gui" /> \n<user username="tarun" password="99490" roles="manager-gui, admin-gui" />' "/opt/apache-tomcat-8.5.98/conf/tomcat-users.xml"
     - name: shutdown_start
       become: true
-      shell: cd /opt/apache-tomcat-8.5.98/bin/ && ./shutdown.sh && sleep 5 && ./startup.sh 
+      shell: cd /opt/apache-tomcat-8.5.98/bin/ && ./shutdown.sh && sleep 5 && ./startup.sh 
