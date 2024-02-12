@@ -9,7 +9,7 @@ pipeline {
         }
 		stage('deploy') {
             steps {
-                ansiblePlaybook installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: '/etc/ansible/ansible-new/tom.yml', vaultTmpPath: ''
+                ansiblePlaybook installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: '/etc/ansible/ansible-new/tomcat_download.yml', vaultTmpPath: ''
             }
         }
     }
